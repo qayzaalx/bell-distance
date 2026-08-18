@@ -19,7 +19,6 @@ dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
 
     // Sejak 26.1 tidak ada lagi Yarn -> pakai mapping resmi Mojang langsung
-    mappings loom.officialMojangMappings()
 
     implementation "net.fabricmc:fabric-loader:${project.loader_version}"
     implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
