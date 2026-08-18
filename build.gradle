@@ -1,0 +1,47 @@
+plugins {
+    // PENTING: untuk MC 26.1+ (unobfuscated) pakai plugin baru ini,
+    // BUKAN "fabric-loom" yang lama (itu untuk versi obfuscated / <=1.21.11)
+    id 'net.fabricmc.fabric-loom' version '1.15.+'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+    archivesName = project.archives_base_name
+}
+
+repositories {
+    // Tambahkan repo tambahan di sini kalau perlu
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+
+    // Sejak 26.1 tidak ada lagi Yarn -> pakai mapping resmi Mojang langsung
+    mappings loom.officialMojangMappings()
+
+    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+}
+
+processResources {
+    inputs.property "version", project.version
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 25
+}
+
+java {
+    withSourcesJar()
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
+}
+
+// Catatan: di plugin baru ini tidak ada lagi task "remapJar" karena Minecraft
+// 26.1+ sudah tidak diobfuscate -> hasil build ada langsung di task "jar" biasa.
