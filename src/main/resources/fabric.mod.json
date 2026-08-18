@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "bellrange",
+  "version": "${version}",
+  "name": "Bell Radar",
+  "description": "Memperluas radius deteksi bell terhadap raider/pillager agar lebih mudah dicari.",
+  "authors": ["Qayza"],
+  "contact": {},
+  "license": "CC0-1.0",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.qayza.bellrange.BellRangeMod"]
+  },
+  "depends": {
+    "fabricloader": ">=0.18.0",
+    "fabric-api": "*",
+    "minecraft": "~26.1",
+    "java": ">=25"
+  }
+}
